@@ -37,7 +37,7 @@ function createTimeInEvent(date) {
     return this;
 }
 
-let hoursWorkedOnDate = function(workDate){
+let hoursWorked = function(workDate){
     let inEvent = this.timeInEvents.find(function(e){
         return e.date === workDate
     })
@@ -49,14 +49,14 @@ let hoursWorkedOnDate = function(workDate){
     return (outEvent.hour - inEvent.hour) / 100
 }
 
-let wagesEarnedOnDate = function(dateSought){
-    let newPay = hoursWorkedOnDate.call(this, dateSought)
+let wagesEarned = function(dateSought){
+    let newPay = hoursWorked.call(this, dateSought)
         * this.payPerHour
     return parseFloat(newPay.toString())
 }
 
 
-let findEmployeeByFirstName = function(srcArray, firstName) {
+let findEmployeeName = function(srcArray, firstName) {
   return srcArray.find(function(rec){
     return rec.firstName === firstName
   })
@@ -83,7 +83,7 @@ const allWagesFor = function () {
     })
 
     const payable = eligibleDates.reduce(function (memo, d) {
-        return memo + wagesEarnedOnDate.call(this, d)
+        return memo + wagesEarned.call(this, d)
     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
     return payable
