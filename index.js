@@ -21,15 +21,13 @@ function createEmployeeRecords(employees) {
 
 function createTimeInEvent(date) {
     let inEvent = {
-        type: "TimeIn",
-        hour: parseInt(date.substring(11)),
         date: date.substring(0, 10),
     }
     this.timeInEvents.push(inEvent);
     return this;
 }
 
-function createTimeOutEvent(date) {
+function createTimeInEvent(date) {
     let outEvent = {
         type: "TimeOut",
         hour: parseInt(date.substring(11)),
